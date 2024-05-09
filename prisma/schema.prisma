@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") 
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model User {
+	id        Int @id @default(autoincrement())
+	email     String?
+	username  String @unique
+	password  String
+	createAt  DateTime @default(now())
+	updatet   DateTime @updatedAt
+}
+
+model Tables {
+  idTable     Int       @id
+  name        String
+  active      Boolean
+}
+
+model Categories {
+  idCategory  Int      @id
+  name        String
+  urlImagen   String?
+  active      Boolean
+  Dishes      Dishes[]
+}
+
+model Dishes {
+  idDish      Int       @id
+  name        String
+  price       Float
+  urlImagen   String?
+  idCategory  Int 
+  active      Boolean
+  Categories  Categories @relation(fields: [idCategory], references: [idCategory])
+  OrdersDishes OrdersDishes[]
+}
+
+model Orders {
+  idOrder     Int      @id @default(autoincrement())
+  idTable     Int      @map("idTable")
+  fecha       DateTime?
+  total       Float?
+  numPersons  Int
+  paymentType String?
+  orderType   String?
+  status      String
+  active      Boolean
+  OrdersDishes OrdersDishes[]
+}
+
+model OrdersDishes {
+  idOrderDish Int      @id @default(autoincrement())
+  idOrder     Int
+  idDish      Int
+  count       Int
+  comment     String?
+  Orders      Orders   @relation(fields: [idOrder], references: [idOrder])
+  Dishes      Dishes   @relation(fields: [idDish], references: [idDish])
+}

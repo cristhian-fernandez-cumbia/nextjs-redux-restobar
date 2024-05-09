@@ -15,7 +15,8 @@ const config: Config = {
       colors: {
         'primary': '#be1623',
         'secundary': '#fac55d',
-        'terciary': '#486966'
+        'terciary': '#486966',
+        'terciary-light': '#09D69C'
       }
     }
   },

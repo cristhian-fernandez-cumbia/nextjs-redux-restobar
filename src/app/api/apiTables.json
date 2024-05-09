@@ -1,0 +1,54 @@
+{
+  "data": {
+    "tables": [
+      {
+        "idTable": 1,
+        "numPersons": 4,
+        "stateTable": 1,
+        "active": true
+      },
+      {
+        "idTable": 2,
+        "numPersons": 0,
+        "stateTable": 0,
+        "active": true
+      },
+      {
+        "idTable": 3,
+        "numPersons": 0,
+        "stateTable": 0,
+        "active": true
+      },
+      {
+        "idTable": 4,
+        "numPersons": 6,
+        "stateTable": 1,
+        "active": true
+      },
+      {
+        "idTable": 5,
+        "numPersons": 0,
+        "stateTable": 0,
+        "active": true
+      },
+      {
+        "idTable": 6,
+        "numPersons": 4,
+        "stateTable": 1,
+        "active": true
+      },
+      {
+        "idTable": 7,
+        "numPersons": 0,
+        "stateTable": 0,
+        "active": true
+      },
+      {
+        "idTable": 8,
+        "numPersons": 10,
+        "stateTable": 1,
+        "active": true
+      }
+    ]
+  }
+}

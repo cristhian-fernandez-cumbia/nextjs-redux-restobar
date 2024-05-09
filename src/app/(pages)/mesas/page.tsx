@@ -1,9 +1,13 @@
-import Mesas from '@/container/mesas/Mesas'
+import Header from '@/components/header/Header'
+import Tables from '@/container/tables/Tables'
 import React from 'react'
 
 const mesas = () => {
   return (
-    <Mesas/>
+    <>
+      <Header/>
+      <Tables/>
+    </>
   )
 }
 

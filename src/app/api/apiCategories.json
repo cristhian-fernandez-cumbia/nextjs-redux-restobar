@@ -1,0 +1,79 @@
+{
+    "data": {
+      "categories": [
+        {
+          "idCategory": 0,
+          "name": "Todo",
+          "urlImagen": "",
+          "active": true
+        },
+        {
+          "idCategory": 1,
+          "name": "Criollazo",
+          "urlImagen": "",
+          "active": true
+        },
+        {
+          "idCategory": 2,
+          "name": "Marino",
+          "urlImagen": "",
+          "active": true
+        },
+        {
+          "idCategory": 3,
+          "name": "Refrescos",
+          "urlImagen": "",
+          "active": true
+        },
+        {
+          "idCategory": 4,
+          "name": "Marinos Calientes",
+          "urlImagen": "",
+          "active": true
+        },
+        {
+          "idCategory": 5,
+          "name": "Gaseosas Cerveza",
+          "urlImagen": "",
+          "active": true
+        },
+        {
+          "idCategory": 6,
+          "name": "Acompaña mientos",
+          "urlImagen": "",
+          "active": true
+        },
+        {
+          "idCategory": 7,
+          "name": "Hambur guesa",
+          "urlImagen": "",
+          "active": true
+        },
+        {
+          "idCategory": 8,
+          "name": "Adicionales",
+          "urlImagen": "",
+          "active": true
+        },
+        {
+          "idCategory": 9,
+          "name": "Cremas y Salsas",
+          "urlImagen": "",
+          "active": true
+        },
+        {
+          "idCategory": 10,
+          "name": "Alitas BBQ",
+          "urlImagen": "",
+          "active": true
+        },
+        {
+          "idCategory": 11,
+          "name": "Cócteles",
+          "urlImagen": "",
+          "active": true
+        }
+      ]
+    }
+  }
+  
