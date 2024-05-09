@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import db from "@/libs/db";
-// import { NextApiRequest } from 'next';
 
 interface Dish {
   idDish: number;
