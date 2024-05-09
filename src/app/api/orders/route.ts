@@ -23,19 +23,14 @@ interface OrderData {
 // Función para obtener todas las órdenes o la última orden que cumpla con los criterios especificados
 export async function GET(request: NextApiRequest) {
   try {
-    // const { idtable } = request.query;
-
     if (request.url === undefined) {
       throw new Error('URL de solicitud indefinida');
     }
-    const {searchParams} = new URL(request.url)
-    const idTable = searchParams.get('idtable')
+    const { searchParams } = new URL(request.url);
+    const idTable = searchParams.get('idtable');
 
     // Si idTable no está presente en la consulta, devolver todas las órdenes
     if (!idTable) {
-      // Buscar todas las órdenes
-      console.log('entroo');
-      
       const orders = await db.orders.findMany({
         include: {
           OrdersDishes: {
@@ -48,7 +43,6 @@ export async function GET(request: NextApiRequest) {
       // Retornar las órdenes
       return NextResponse.json(orders);
     }
-    console.log('entroo2');
 
     // Buscar la última orden que cumpla con los criterios especificados
     const order = await db.orders.findFirst({
@@ -67,10 +61,8 @@ export async function GET(request: NextApiRequest) {
         }
       }
     });
-    console.log('order:::', order);
 
     if (!order) {
-      // return NextResponse.json({ error: 'No se encontró ninguna orden para la mesa especificada con status OPEN' }, { status: 404 });
       return NextResponse.json(null);
     }
 
