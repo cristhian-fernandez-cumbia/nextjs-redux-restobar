@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import db from "@/libs/db";
-import { NextApiRequest } from 'next';
+// import { NextApiRequest } from 'next';
 
 interface Dish {
   idDish: number;
@@ -21,7 +21,7 @@ interface OrderData {
 }
 
 // Función para obtener todas las órdenes o la última orden que cumpla con los criterios especificados
-export async function GET(request: NextApiRequest) {
+export async function GET(request: any) {
   try {
     if (request.url === undefined) {
       throw new Error('URL de solicitud indefinida');
@@ -75,7 +75,7 @@ export async function GET(request: NextApiRequest) {
 }
 
 // Función para crear una nueva orden
-export async function POST(request: NextApiRequest) {
+export async function POST(request: any) {
   try {
     const requestBody = request.body;
     if (!requestBody) {
