@@ -6,7 +6,7 @@ import { Category } from '@/interface/categories';
 import { ArrowLeft, ArrowRight } from '@/assets/icons';
 
 interface CategoriesProps {
-  handleCategoryChange: (categoryId: string) => void;
+  handleCategoryChange: (categoryId: number) => void;
 }
 
 const Categories = ({ handleCategoryChange }: CategoriesProps) => {
@@ -97,11 +97,11 @@ const Categories = ({ handleCategoryChange }: CategoriesProps) => {
             <div className="flex justify-center" key={category.idCategory}>
               <li
                 className={`flex justify-center cursor-pointer ${
-                  category.idCategory.toString() === selectedCategory ? 'bg-red-600 text-white' : 'bg-gray-300 text-gray-600'
+                  Number(category.idCategory) === selectedCategory ? 'bg-red-600 text-white' : 'bg-gray-300 text-gray-600'
                 } px-4 py-2 rounded-2xl mr-3 items-center w-[100px] h-16 text-base text-center`}
                 onClick={() => {
-                  dispatch(setSelectedCategory(category.idCategory.toString()));
-                  handleCategoryChange(category.idCategory.toString());
+                  dispatch(setSelectedCategory(Number(category.idCategory)));
+                  handleCategoryChange(Number(category.idCategory));
                 }}
               >
                 {category.name}

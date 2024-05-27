@@ -3,12 +3,12 @@ import { Dish, DishesState } from '@/interface/dishes';
 
 interface SearchAndCategoryState {
   searchTerm: string;
-  selectedCategory: string;
+  selectedCategory: number;
 }
 
 const initialSearchAndCategoryState: SearchAndCategoryState = {
   searchTerm: '',
-  selectedCategory: '0',
+  selectedCategory: 0,
 };
 
 const initialState: DishesState & SearchAndCategoryState = {
@@ -37,13 +37,13 @@ export const dishesSlice = createSlice({
     },
     setSearchTerm: (state, action: PayloadAction<string>) => {
       state.searchTerm = action.payload;
-      state.selectedCategory = '0';
+      state.selectedCategory = 0;
       state.dishes = state.allDishes.filter(dish => {
         const isInSearch = dish.name.toLowerCase().includes(state.searchTerm.toLowerCase());
         return isInSearch;
       });
     },
-    setSelectedCategory: (state, action: PayloadAction<string>) => {
+    setSelectedCategory: (state, action: PayloadAction<number>) => {
       state.selectedCategory = action.payload;
 
       // state.dishes = state.allDishes.filter(dish => {

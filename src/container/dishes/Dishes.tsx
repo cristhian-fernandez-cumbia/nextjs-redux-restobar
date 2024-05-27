@@ -33,7 +33,7 @@ const Dishes = () => {
     dispatch(setSearchTerm(e.target.value));
   };
 
-  const handleCategoryChange = (categoryId: string) => {
+  const handleCategoryChange = (categoryId: number) => {
     dispatch(setSelectedCategory(categoryId));
   };
 
@@ -76,7 +76,7 @@ const Dishes = () => {
           ) : (
             favorites.map((dish: Dish) => (
               <div key={dish.idDish}>
-                <DishesCard dish={dish} idTable={idTable} categoryName={getCategoryNameById(parseInt(dish.idCategory))} updateFavorites={updateFavorites} />
+                <DishesCard dish={dish} idTable={idTable} categoryName={getCategoryNameById(Number(dish.idCategory))} updateFavorites={updateFavorites} />
               </div>
             ))
           )}
@@ -98,10 +98,10 @@ const Dishes = () => {
             <div>No hay platos</div>
           ) : (
             <>
-              {selectedCategory === '0' ? (
+              {selectedCategory === 0 ? (
                 dishes.map((dish: Dish) => (
                   <div key={dish.idDish}>
-                    <DishesCard dish={dish} idTable={idTable} categoryName={getCategoryNameById(parseInt(dish.idCategory))} updateFavorites={updateFavorites} />
+                    <DishesCard dish={dish} idTable={idTable} categoryName={getCategoryNameById(Number(dish.idCategory))} updateFavorites={updateFavorites} />
                   </div>
                 ))
               ) : (
@@ -109,7 +109,7 @@ const Dishes = () => {
                   if (dish.idCategory === selectedCategory) {
                     return (
                       <div key={dish.idDish}>
-                        <DishesCard dish={dish} idTable={idTable} categoryName={getCategoryNameById(parseInt(dish.idCategory))} updateFavorites={updateFavorites} />
+                        <DishesCard dish={dish} idTable={idTable} categoryName={getCategoryNameById(Number(dish.idCategory))} updateFavorites={updateFavorites} />
                       </div>
                     );
                   }

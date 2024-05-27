@@ -86,7 +86,7 @@ const OrderCreate: React.FC<OrderCreateProps> = ({ onClose, idTable, priceTotal 
         S/{priceTotal.toFixed(2)} + {getCommission()} = <span className='font-bold text-xl'>S/{getTotalPrice()}</span>
       </p>
       <div className='flex gap-2 justify-end mt-10'>
-        <Button className='bg-green-500 hover:bg-green-700 px-5 py-2 w-12 flex justify-center text-base font-semibold text-white rounded-lg' onClick={handleConfirmation}>Generar Pedido</Button>
+        <Button className='bg-green-500 hover:bg-green-700 px-5 py-2  flex justify-center text-base font-semibold text-white rounded-lg' onClick={handleConfirmation}>Generar Pedido</Button>
         <Button className='bg-primary hover:bg-red-900 px-5 py-2 w-12 flex justify-center text-base font-semibold text-white rounded-lg' onClick={onClose}>NO</Button>
       </div>
     </div>
