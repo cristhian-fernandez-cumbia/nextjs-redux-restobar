@@ -28,7 +28,7 @@ body {
 
 @layer components {
   .card {
-    @apply bg-transparent w-44 h-44 grid place-content-center rounded-lg text-white font-bold border-2 border-primary text-4xl;
+    @apply bg-transparent w-36 h-36 sm:w-44 sm:h-44 grid place-content-center rounded-lg text-white font-bold border-2 border-primary text-4xl;
   }
   .form-input {
     @apply pl-10 border border-terciary w-full px-3 py-2 mt-4 rounded-md focus:outline-none;

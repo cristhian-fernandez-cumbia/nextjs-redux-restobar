@@ -94,11 +94,11 @@ const AttencionCard: React.FC<AttencionCardProps> = ({ orden, onDeleteItem }) =>
             <p className='text-sm font-semibold'>S/ {orden.price}.00</p>
           </div>
           <div className='flex items-center pr-1'>
-            <div className='border-green-500 border-2 p-1 rounded-md bg-green-500' onClick={handleIncrement}>
+            <div className='border-green-500 border-2 p-1 rounded-md bg-green-500 cursor-pointer' onClick={handleIncrement}>
               <Plus fill='#FFF' />
             </div>
             <div className='mx-1 w-6 flex justify-center font-semibold'>{count}</div>
-            <div className='border-red-500 border-2 p-1 rounded-md bg-red-500' onClick={handleDecrement}>
+            <div className='border-red-500 border-2 p-1 rounded-md bg-red-500 cursor-pointer' onClick={handleDecrement}>
               <Minus fill='#FFF' />
             </div>
           </div>

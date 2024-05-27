@@ -3,7 +3,8 @@ export interface Dish {
   name: string;
   price: number;
   urlImagen: string;
-  idCategory: number;
+  description: string;
+  idCategory: string;
   active: boolean;
 }
 

@@ -22,7 +22,7 @@ const FormLogin = () => {
   })
   
   return (
-    <form className='flex flex-col w-96 mx-auto' onSubmit={onSubmit}>
+    <form className='flex flex-col w-72 sm:w-96 mx-auto' onSubmit={onSubmit}>
       <div className="relative">
         <User fill="#1C2E45" className="absolute top-6 left-3"/>
         <input 

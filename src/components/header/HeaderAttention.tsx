@@ -10,7 +10,7 @@ const HeaderAttention: React.FC<HeaderAttentionProps> = ({ text }) => {
   return (
     <div className="relative mb-3">
       <div className="absolute inset-0 flex items-center justify-center z-10">
-          <h1 className="text-white text-3xl font-bold bg-black bg-opacity-70 px-4 py-2 rounded-lg">{text}</h1>
+          <h1 className="text-white text-2xl sm:text-3xl font-bold bg-black bg-opacity-70 px-4 py-2 rounded-lg">{text}</h1>
       </div>
       <div className="relative h-20 overflow-hidden rounded-lg">
           <Image src={banner_dishes_bohemia} alt="banner_dishes_bohemia" layout="fill" objectFit="cover" className="rounded-lg" />

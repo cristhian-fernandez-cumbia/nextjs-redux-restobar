@@ -3,50 +3,72 @@
     "tables": [
       {
         "idTable": 1,
-        "numPersons": 4,
-        "stateTable": 1,
+        "name": "Mesa #01",
         "active": true
       },
       {
         "idTable": 2,
-        "numPersons": 0,
-        "stateTable": 0,
+        "name": "Mesa #02",
         "active": true
       },
       {
         "idTable": 3,
-        "numPersons": 0,
-        "stateTable": 0,
+        "name": "Mesa #03",
         "active": true
       },
       {
         "idTable": 4,
-        "numPersons": 6,
-        "stateTable": 1,
+        "name": "Mesa #04",
         "active": true
       },
       {
         "idTable": 5,
-        "numPersons": 0,
-        "stateTable": 0,
+        "name": "Mesa #05",
         "active": true
       },
       {
         "idTable": 6,
-        "numPersons": 4,
-        "stateTable": 1,
+        "name": "Mesa #06",
         "active": true
       },
       {
         "idTable": 7,
-        "numPersons": 0,
-        "stateTable": 0,
+        "name": "Mesa #07",
         "active": true
       },
       {
         "idTable": 8,
-        "numPersons": 10,
-        "stateTable": 1,
+        "name": "Mesa #08",
+        "active": true
+      },
+      {
+        "idTable": 9,
+        "name": "Mesa #09",
+        "active": true
+      },
+      {
+        "idTable": 10,
+        "name": "Mesa #10",
+        "active": true
+      },
+      {
+        "idTable": 11,
+        "name": "Mesa #11",
+        "active": true
+      },
+      {
+        "idTable": 12,
+        "name": "Bunker M1",
+        "active": true
+      },
+      {
+        "idTable": 13,
+        "name": "Bunker M2",
+        "active": true
+      },
+      {
+        "idTable": 14,
+        "name": "Bunker M3",
         "active": true
       }
     ]

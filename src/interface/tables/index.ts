@@ -1,6 +1,6 @@
 export interface ITable {
   idTable: string;
   numPersons: number,
-  stateTable: number,
+  name: string,
   active: boolean
 }

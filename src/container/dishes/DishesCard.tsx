@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import imageFood from '@/assets/images/products/bohemia_lomo_saltado.png';
+import imageLogo from '@/assets/images/logo/logo_bohemia.jpg';
 import Image from 'next/image';
-import { Start } from '@/assets/icons';
+import { Start, StartFill } from '@/assets/icons';
 import { Dish } from '@/interface/dishes';
 import { Orden } from '@/interface/attencion';
 
 interface DishesCardProps {
   dish: Dish;
   idTable: string;
+  categoryName: string;
+  updateFavorites: () => void;
 }
 
-const DishesCard = ({ dish, idTable }: DishesCardProps) => {
+const DishesCard = ({ dish, idTable, categoryName, updateFavorites }: DishesCardProps) => {
   const [added, setAdded] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     const ordenes = JSON.parse(localStorage.getItem('ordenes') || '[]');
     const alreadyAdded = ordenes.some((orden: Orden) => orden.idDish === dish.idDish && orden.idTable === idTable);
     setAdded(alreadyAdded);
+
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    const alreadyFavorite = favorites.some((favorite: number) => favorite === dish.idDish);
+    setIsFavorite(alreadyFavorite);
   }, [dish.idDish, idTable]);
 
   const handleAddToOrden = () => {
@@ -36,14 +43,34 @@ const DishesCard = ({ dish, idTable }: DishesCardProps) => {
     }
   };
 
+  const handleToggleFavorite = () => {
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    if (isFavorite) {
+      const updatedFavorites = favorites.filter((favorite: number) => favorite !== dish.idDish);
+      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    } else {
+      favorites.push(dish.idDish);
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
+    setIsFavorite(!isFavorite);
+    updateFavorites();
+  };
+
   return (
     <div className='flex w-full border-2 border-red-600 rounded-lg overflow-hidden items-center px-2 py-2 mb-2'>
-      <Image src={imageFood} alt='bohemia_comidas' className='h-16 w-16 mr-2' priority/>
+      <div className='relative h-16 w-16 mr-2 rounded-lg overflow-hidden'>
+        <Image src={imageLogo} alt={dish.name} className='h-16 w-16' priority/>
+        <div className='absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center'>
+          <p className='text-white text-[10px] text-center font-bold transform -rotate-45'>{categoryName}</p>
+        </div>
+      </div>
       <div className='flex justify-between w-full items-center'>
         <div>
           <div className='flex items-center'>
             <p>{dish.name}</p>
-            <Start/>
+            <div onClick={handleToggleFavorite} className='cursor-pointer'>
+              {isFavorite ? <StartFill /> :<Start />}
+            </div>
           </div>
           <p className='text-sm font-semibold'>S/ {dish.price}.00</p>
         </div>

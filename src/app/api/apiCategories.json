@@ -9,66 +9,84 @@
         },
         {
           "idCategory": 1,
-          "name": "Criollazo",
+          "name": "Desayunos",
           "urlImagen": "",
           "active": true
         },
         {
           "idCategory": 2,
-          "name": "Marino",
+          "name": "Criollazo",
           "urlImagen": "",
           "active": true
         },
         {
           "idCategory": 3,
-          "name": "Refrescos",
+          "name": "Marino",
           "urlImagen": "",
           "active": true
         },
         {
           "idCategory": 4,
-          "name": "Marinos Calientes",
+          "name": "Refrescos",
           "urlImagen": "",
           "active": true
         },
         {
           "idCategory": 5,
-          "name": "Gaseosas Cerveza",
+          "name": "Marinos Calientes",
           "urlImagen": "",
           "active": true
         },
         {
           "idCategory": 6,
-          "name": "Acompaña mientos",
+          "name": "Gaseosas Cerveza",
           "urlImagen": "",
           "active": true
         },
         {
           "idCategory": 7,
-          "name": "Hambur guesa",
+          "name": "Acompaña mientos",
           "urlImagen": "",
           "active": true
         },
         {
           "idCategory": 8,
-          "name": "Adicionales",
+          "name": "Hambur guesa",
           "urlImagen": "",
           "active": true
         },
         {
           "idCategory": 9,
-          "name": "Cremas y Salsas",
+          "name": "Adicionales",
           "urlImagen": "",
           "active": true
         },
         {
           "idCategory": 10,
-          "name": "Alitas BBQ",
+          "name": "Cremas y Salsas",
           "urlImagen": "",
           "active": true
         },
         {
           "idCategory": 11,
+          "name": "Alitas BBQ",
+          "urlImagen": "",
+          "active": true
+        },
+        {
+          "idCategory": 12,
+          "name": "Broster",
+          "urlImagen": "",
+          "active": true
+        },
+        {
+          "idCategory": 13,
+          "name": "Caldos",
+          "urlImagen": "",
+          "active": true
+        },
+        {
+          "idCategory": 14,
           "name": "Cócteles",
           "urlImagen": "",
           "active": true

@@ -1,0 +1,238 @@
+{
+  "data": {
+      "dishes": [
+          {
+              "idDish": 1,
+              "name": "Ceviche Mixto",
+              "price": 20.00,
+              "urlImagen": "",
+              "idCategory": 1,
+              "active": true
+          },
+          {
+              "idDish": 2,
+              "name": "Ceviche Clásico",
+              "price": 18.00,
+              "urlImagen": "",
+              "idCategory": 1,
+              "active": true
+          },
+          {
+              "idDish": 3,
+              "name": "Ceviche de Conchas Negras",
+              "price": 22.00,
+              "urlImagen": "",
+              "idCategory": 1,
+              "active": true
+          },
+          {
+              "idDish": 4,
+              "name": "Ceviche de Cangrejo",
+              "price": 24.00,
+              "urlImagen": "",
+              "idCategory": 1,
+              "active": true
+          },
+          {
+            "idDish": 5,
+            "name": "Chicharrón de Pescado",
+            "price": 20.00,
+            "urlImagen": "",
+            "idCategory": 2,
+            "active": true
+          },
+          {
+              "idDish": 6,
+              "name": "Chicharrón Mixto",
+              "price": 18.00,
+              "urlImagen": "",
+              "idCategory": 2,
+              "active": true
+          },
+          {
+              "idDish": 7,
+              "name": "Chicharrón de Calamar",
+              "price": 22.00,
+              "urlImagen": "",
+              "idCategory": 2,
+              "active": true
+          },
+          {
+              "idDish": 8,
+              "name": "Chicharrón Duo",
+              "price": 24.00,
+              "urlImagen": "",
+              "idCategory": 2,
+              "active": true
+          },
+          {
+            "idDish": 9,
+            "name": "Chaufa de Pescado",
+            "price": 20.00,
+            "urlImagen": "",
+            "idCategory": 3,
+            "active": true
+          },
+          {
+              "idDish": 10,
+              "name": "Arroz con Mariscos",
+              "price": 22.00,
+              "urlImagen": "",
+              "idCategory": 3,
+              "active": true
+          },
+          {
+              "idDish": 11,
+              "name": "Lomo Saltado",
+              "price": 18.00,
+              "urlImagen": "",
+              "idCategory": 3,
+              "active": true
+          },
+          {
+              "idDish": 12,
+              "name": "Langostino",
+              "price": 24.00,
+              "urlImagen": "",
+              "idCategory": 3,
+              "active": true
+          },
+          {
+            "idDish": 13,
+            "name": "Chupe Langostinos",
+            "price": 20.00,
+            "urlImagen": "",
+            "idCategory": 4,
+            "active": true
+          },
+          {
+              "idDish": 14,
+              "name": "Parihuela",
+              "price": 22.00,
+              "urlImagen": "",
+              "idCategory": 4,
+              "active": true
+          },
+          {
+              "idDish": 15,
+              "name": "Chupe de Camarones",
+              "price": 18.00,
+              "urlImagen": "",
+              "idCategory": 4,
+              "active": true
+          },
+          {
+            "idDish": 16,
+            "name": "Fetuchuni a la Marinera",
+            "price": 20.00,
+            "urlImagen": "",
+            "idCategory": 5,
+            "active": true
+          },
+          {
+              "idDish": 17,
+              "name": "Tacu Tacu",
+              "price": 18.00,
+              "urlImagen": "",
+              "idCategory": 5,
+              "active": true
+          },
+          {
+            "idDish": 18,
+            "name": "Pisco Sour",
+            "price": 20.00,
+            "urlImagen": "",
+            "idCategory": 6,
+            "active": true
+          },
+          {
+              "idDish": 19,
+              "name": "Chilcano",
+              "price": 18.00,
+              "urlImagen": "",
+              "idCategory": 6,
+              "active": true
+          },
+          {
+            "idDish": 20,
+            "name": "Cristal Personal",
+            "price": 20.00,
+            "urlImagen": "",
+            "idCategory": 7,
+            "active": true
+          },
+          {
+              "idDish": 21,
+              "name": "Pilsen Personal",
+              "price": 18.00,
+              "urlImagen": "",
+              "idCategory": 7,
+              "active": true
+          },
+          {
+              "idDish": 22,
+              "name": "Cusqueña",
+              "price": 22.00,
+              "urlImagen": "",
+              "idCategory": 7,
+              "active": true
+          },
+          {
+            "idDish": 23,
+            "name": "Inka / Coca 1/2 Litro",
+            "price": 20.00,
+            "urlImagen": "",
+            "idCategory": 8,
+            "active": true
+          },
+          {
+              "idDish": 24,
+              "name": "Inka / Coca 1 Litro",
+              "price": 25.00,
+              "urlImagen": "",
+              "idCategory": 8,
+              "active": true
+          },
+          {
+              "idDish": 25,
+              "name": "Inka / Coca 2 Litros",
+              "price": 30.00,
+              "urlImagen": "",
+              "idCategory": 8,
+              "active": true
+          },
+          {
+              "idDish": 26,
+              "name": "Agua s/c Gas",
+              "price": 5.00,
+              "urlImagen": "",
+              "idCategory": 8,
+              "active": true
+          },
+          {
+            "idDish": 27,
+            "name": "Vaso Chicha / Limonada",
+            "price": 20.00,
+            "urlImagen": "",
+            "idCategory": 9,
+            "active": true
+        },
+        {
+            "idDish": 28,
+            "name": "Chicha / Limonada (1 Litro)",
+            "price": 25.00,
+            "urlImagen": "",
+            "idCategory": 9,
+            "active": true
+        },
+        {
+            "idDish": 29,
+            "name": "Limonada Frozen (Jarra)",
+            "price": 30.00,
+            "urlImagen": "",
+            "idCategory": 9,
+            "active": true
+        }
+      ]
+  }
+}

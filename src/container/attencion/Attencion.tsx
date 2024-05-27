@@ -28,16 +28,22 @@ const Attencion = () => {
     setOrdenes(updatedOrdenes);
   };
 
+  const handleUpdateOrders = () => {
+    const storedOrdenes: Orden[] = JSON.parse(localStorage.getItem('ordenes') || '[]');
+    const filteredOrdenes: Orden[] = storedOrdenes.filter((orden: Orden) => orden.idTable === idTable);
+    setOrdenes(filteredOrdenes);
+  };
+
   const openCreateOrderModal = () => {
     setCreateOrderModalOpen(true);
   };
 
-  const closeCreateOrdereModal = () => {
+  const closeCreateOrderModal = () => {
     setCreateOrderModalOpen(false);
   };
 
   return (
-    <div className='px-6 mb-24 mt-20'>
+    <div className='px-6 mb-28 mt-20'>
       <HeaderAttention text={'Nueva Orden'}/>
       <div className='flex items-center justify-between mb-[5px]'>
         <h1 className='text-center  text-2xl font-medium'>Mesa N°{idTable}</h1>
@@ -51,8 +57,10 @@ const Attencion = () => {
         Agregar a Pedido
       </Button>
 
-      <Modal isOpen={isCreateOrderModalOpen} onClose={closeCreateOrdereModal}>
-         {countPeople!==0 && ordenes.length !== 0 ? <AttentionCreate  onClose={closeCreateOrdereModal} idTable={idTable}/> : <AttentionMessage  onClose={closeCreateOrdereModal}/>} 
+      <Modal isOpen={isCreateOrderModalOpen} onClose={closeCreateOrderModal}>
+         {countPeople !== 0 && ordenes.length !== 0 ? 
+           <AttentionCreate onClose={closeCreateOrderModal} idTable={idTable} onUpdateOrders={handleUpdateOrders} /> 
+           : <AttentionMessage onClose={closeCreateOrderModal} />} 
       </Modal>
 
     </div>

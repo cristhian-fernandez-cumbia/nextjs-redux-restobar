@@ -13,7 +13,7 @@ const Order = () => {
   const pathname = usePathname();
   // const router = useRouter();
   const idTable = pathname.split('/').pop() || '0';
-  const ordenes: Orden[] = JSON.parse(localStorage.getItem('ordenes') || '[]');
+  const ordenes: Orden[] = JSON.parse(localStorage.getItem('pedidos') || '[]');
   
   const filteredOrdenes: Orden[] = ordenes.filter((orden:Orden) => orden.idTable === idTable);
 
@@ -53,7 +53,7 @@ const Order = () => {
 
   return (
     <>
-      <div className='px-6 mb-24 mt-20'>
+      <div className='px-6 mb-28 mt-20'>
         <HeaderAttention text={'Pedido'}/>
         <div className='flex items-center justify-between mb-[6px]'>
           <h1 className='text-center  text-2xl font-medium'>Mesa N°{idTable}</h1>
@@ -76,7 +76,7 @@ const Order = () => {
         >Cancelar Pedido</button>
       </div>
       <Modal isOpen={isCreateOrderModalOpen} onClose={closeCreateOrdereModal}>
-        <OrderCreate  onClose={closeCreateOrdereModal} idTable={idTable}/>
+        <OrderCreate  onClose={closeCreateOrdereModal} idTable={idTable} priceTotal={priceTotal}/>
       </Modal>
     </>
   )
