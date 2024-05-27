@@ -1,10 +1,10 @@
 export interface Dish {
   idDish: number;
   name: string;
-  price: number;
+  price: number | string;
   urlImagen: string;
   description: string;
-  idCategory: string;
+  idCategory: string | number;
   active: boolean;
 }
 
