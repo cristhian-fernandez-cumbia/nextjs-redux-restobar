@@ -8,7 +8,7 @@ const OrderCard = ({ orden }: { orden: Orden }) => {
   return (
     <div className='flex w-full border-2 border-red-600 rounded-lg overflow-hidden items-center px-2 py-2 mb-2'>
       {
-        orden.annotation?.length !== 0 ? 
+        orden.annotation && orden.annotation.length !== 0 ? 
         <>
           <span className='relative cursor-pointer'>
             <Annotation className='mr-2' fill={'red'} />
@@ -16,7 +16,7 @@ const OrderCard = ({ orden }: { orden: Orden }) => {
                 1
             </span>
           </span>
-        </> : ''
+        </> : <Annotation className='mr-2' fill={'#ccc'} />
       }
       <Image src={imageFood} alt='bohemia_comidas' className='h-16 w-16 mr-2'/>
       <div className='flex justify-between w-full items-center'>
