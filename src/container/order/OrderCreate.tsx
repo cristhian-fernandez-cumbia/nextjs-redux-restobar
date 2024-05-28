@@ -50,18 +50,24 @@ const OrderCreate: React.FC<OrderCreateProps> = ({ onClose, idTable, priceTotal 
     setPaymentOption(option);
   };
 
-  const getTotalPrice = () => {
+  const getCommissionAmount = () => {
     if (paymentOption === 'tarjeta') {
-      return (priceTotal * 1.05).toFixed(2); 
+      if (priceTotal >= 0 && priceTotal < 30) return 0;
+      if (priceTotal >= 30 && priceTotal < 50) return 2.50;
+      if (priceTotal >= 50 && priceTotal < 100) return 3.00;
+      if (priceTotal >= 100) return 5.00;
     }
-    return priceTotal.toFixed(2);
+    return 0;
+  };
+
+  const getTotalPrice = () => {
+    const commission = getCommissionAmount();
+    return (priceTotal + commission).toFixed(2);
   };
 
   const getCommission = () => {
-    if (paymentOption === 'tarjeta') {
-      return '5% Comisión';
-    }
-    return '0% Comisión';
+    const commission = getCommissionAmount();
+    return commission === 0 ? '(S/ 0.00 Comisión)': `(S/ ${commission.toFixed(2)} Comisión)`;
   };
 
   if (isOrderGenerated) {
@@ -81,19 +87,19 @@ const OrderCreate: React.FC<OrderCreateProps> = ({ onClose, idTable, priceTotal 
       <p>Elija la opción de pago</p>
       <div className='flex gap-2 mb-4'>
         <Button
-          className={`px-5 py-2 rounded-lg ${paymentOption === 'tarjeta' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+          className={`px-5 py-2 rounded-lg ${paymentOption === 'tarjeta' ? 'bg-orange-500 text-white' : 'bg-gray-200'}`}
           onClick={() => handlePaymentOptionChange('tarjeta')}
         >
           Tarjeta
         </Button>
         <Button
-          className={`px-5 py-2 rounded-lg ${paymentOption === 'yape' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+          className={`px-5 py-2 rounded-lg ${paymentOption === 'yape' ? 'bg-orange-500 text-white' : 'bg-gray-200'}`}
           onClick={() => handlePaymentOptionChange('yape')}
         >
           Yape / Plin
         </Button>
         <Button
-          className={`px-5 py-2 rounded-lg ${paymentOption === 'efectivo' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+          className={`px-5 py-2 rounded-lg ${paymentOption === 'efectivo' ? 'bg-orange-500 text-white' : 'bg-gray-200'}`}
           onClick={() => handlePaymentOptionChange('efectivo')}
         >
           Efectivo
@@ -108,14 +114,14 @@ const OrderCreate: React.FC<OrderCreateProps> = ({ onClose, idTable, priceTotal 
         <Button 
           className='bg-green-500 hover:bg-green-700 px-5 py-2 flex justify-center text-base font-semibold text-white rounded-lg'
           onClick={handleConfirmation}
-          // disabled={isLoading}
+          disabled={isLoading}
         >
           {isLoading ? 'Generando...' : 'Generar Pedido'}
         </Button>
         <Button 
           className='bg-primary hover:bg-red-900 px-5 py-2 w-12 flex justify-center text-base font-semibold text-white rounded-lg' 
           onClick={onClose}
-          // disabled={isLoading}
+          disabled={isLoading}
         >
           NO
         </Button>

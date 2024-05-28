@@ -1,24 +1,34 @@
 import React, { useState } from 'react';
 import { Clock } from '@/assets/icons';
-import { Orden } from '@/interface/attencion';
 import Button from '@/components/button/Button';
 
 interface AttentionAnnotationProps {
-  comment: string;
+  onClose: () => void;
   setComment: React.Dispatch<React.SetStateAction<string>>;
-  updateOrderCount: (newCount: number) => void;
+  comment: string;
+  updateOrderCommet: () => void;
 }
 
-const AttentionAnnotation: React.FC<AttentionAnnotationProps> = ({ setComment, comment, updateOrderCount }) => {
+const AttentionAnnotation: React.FC<AttentionAnnotationProps> = ({ onClose, setComment, comment, updateOrderCommet }) => {
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const currentDate = new Date().toLocaleDateString();
 
   const handleAddComment = () => {
-    updateOrderCount(0)
-  }
+    updateOrderCommet()
+    setLoading(true);
+    setTimeout(() => {
+      setMessage(comment.length === 0 ? 'No se agrego comentarios': 'Comentario editado correctamente');
+      setLoading(false);
+      setTimeout(() => {
+        setMessage('');
+        onClose();
+      }, 1000);
+    }, 1000);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setComment(e.target.value)
+    setComment(e.target.value);
     setMessage('');
   };
 
@@ -36,10 +46,14 @@ const AttentionAnnotation: React.FC<AttentionAnnotationProps> = ({ setComment, c
         <Clock className='h-3' />
         <p className='text-xs font-semibold text-gray-500 relative top-[1px]'>{currentDate}</p>
       </div>
-      <Button className='bg-green-600 text-white px-3 py-2 mt-2 rounded hover:bg-green-800' >
-        Agregar Comentario
+      <Button
+        className={`${comment.length === 0 ? 'bg-red-600 hover:bg-red-800': 'bg-green-600 hover:bg-green-800'}  text-white px-3 py-2 mt-2 rounded `}
+        onClick={handleAddComment}
+        disabled={loading}
+      >
+        {loading ? 'Cargando...' : comment.length === 0 ? 'Sin Comentarios': 'Guardar Comentario'}
       </Button>
-      {message && <p className='text-red-600 mt-2'>{message}</p>}
+      {message && <p className={`${comment.length === 0 ? 'text-red-600': 'text-green-600 '} mt-2`}>{message}</p>}
     </div>
   );
 };

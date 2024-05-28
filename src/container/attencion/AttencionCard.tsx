@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { Annotation, Minus, Plus, Trash } from '@/assets/icons';
 import { Orden } from '@/interface/attencion';
@@ -17,7 +17,8 @@ const AttencionCard: React.FC<AttencionCardProps> = ({ orden, onDeleteItem }) =>
   const [count, setCount] = useState(orden.count);
   const [isRemoveModalOpen, setRemoveModalOpen] = useState(false);
   const [isAnnotationModalOpen, setAnnotationModalOpen] = useState(false);
-  const [comment, setComment] = useState(orden.annotation || '');
+  const [comment, setComment] = useState<string>(orden.annotation || '');
+  const [commentOrder, setCommentOrder] = useState<string>(orden.annotation || '');
 
   const openRemoveModal = () => {
     setRemoveModalOpen(true);
@@ -28,6 +29,7 @@ const AttencionCard: React.FC<AttencionCardProps> = ({ orden, onDeleteItem }) =>
   };
 
   const openAnnotationModal = () => {
+    setComment(commentOrder)
     setAnnotationModalOpen(true);
   };
 
@@ -59,9 +61,22 @@ const AttencionCard: React.FC<AttencionCardProps> = ({ orden, onDeleteItem }) =>
     const updatedOrdenes = ordenes.filter((orden: Orden) => !(orden.idDish === Number(deletedOrdenId)));
     localStorage.setItem('ordenes', JSON.stringify(updatedOrdenes));
   };
-
+  
   const updateOrderCount = (newCount: number) => {
     const updatedOrden = { ...orden, count: newCount, annotation: comment };
+    const ordenes = JSON.parse(localStorage.getItem('ordenes') || '[]');
+    const updatedOrdenes = ordenes.map((o: Orden) => {
+      if (o.idDish === updatedOrden.idDish && o.idTable === updatedOrden.idTable) {
+        return updatedOrden;
+      }
+      return o;
+    });
+    localStorage.setItem('ordenes', JSON.stringify(updatedOrdenes));
+  };
+
+  const updateOrderCommet = () => {
+    setCommentOrder(comment)
+    const updatedOrden = { ...orden, count: count, annotation: comment };
     const ordenes = JSON.parse(localStorage.getItem('ordenes') || '[]');
     const updatedOrdenes = ordenes.map((o: Orden) => {
       if (o.idDish === updatedOrden.idDish && o.idTable === updatedOrden.idTable) {
@@ -79,8 +94,8 @@ const AttencionCard: React.FC<AttencionCardProps> = ({ orden, onDeleteItem }) =>
           <Trash />
         </div>
         <Button onClick={openAnnotationModal} className='relative'>
-          <Annotation className='mr-2' fill={comment.length !== 0 ? 'red' : undefined} />
-          {comment.length !== 0 && (
+          <Annotation className='mr-2' fill={commentOrder.length !== 0 ? 'red' : undefined} />
+          {commentOrder.length !== 0 && (
             <span className='absolute -top-1 right-1 bg-red-600 w-4 h-4 text-[11px] rounded-full flex justify-center items-center text-white'>
               1
             </span>
@@ -105,10 +120,10 @@ const AttencionCard: React.FC<AttencionCardProps> = ({ orden, onDeleteItem }) =>
         </div>
       </div>
       <Modal isOpen={isRemoveModalOpen} onClose={closeRemoveModal}>
-        <AttentionRemove handleDelete={handleDelete} onClose={closeRemoveModal}/>
+        <AttentionRemove handleDelete={handleDelete} onClose={closeRemoveModal} />
       </Modal>
       <Modal isOpen={isAnnotationModalOpen} onClose={closeAnnotationModal}>
-        <AttentionAnnotation setComment={setComment} comment={comment} updateOrderCount={updateOrderCount}/>
+        <AttentionAnnotation onClose={closeAnnotationModal} setComment={setComment} comment={comment}  updateOrderCommet={updateOrderCommet}/>
       </Modal>
     </>
   );

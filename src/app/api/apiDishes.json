@@ -129,7 +129,7 @@
       },
       {
         "idDish": 15,
-        "name": "Duo Ceviche de caballa",
+        "name": "Fuente de Ceviche de caballa",
         "price": "20",
         "urlImagen": "",
         "idCategory": 3,
@@ -147,7 +147,7 @@
       },
       {
         "idDish": 17,
-        "name": "Duo Ceviche de Toyo",
+        "name": "Fuente de Ceviche de Toyo",
         "price": "32",
         "urlImagen": "",
         "idCategory": 3,
@@ -165,7 +165,7 @@
       },
       {
         "idDish": 19,
-        "name": "Duo Ceviche Mixto",
+        "name": "Fuente de Ceviche Mixto",
         "price": "45",
         "urlImagen": "",
         "idCategory": 3,
@@ -183,7 +183,7 @@
       },
       {
         "idDish": 21,
-        "name": "Duo Ceviche BOHEMIA",
+        "name": "Fuente de Ceviche BOHEMIA",
         "price": "50",
         "urlImagen": "",
         "idCategory": 3,
@@ -264,7 +264,7 @@
       },
       {
         "idDish": 30,
-        "name": "Duo Arroz con Mariscos",
+        "name": "Fuente de Arroz con Mariscos",
         "price": "35",
         "urlImagen": "",
         "idCategory": 5,
@@ -282,7 +282,7 @@
       },
       {
         "idDish": 32,
-        "name": "Duo Chaufa de Mariscos",
+        "name": "Fuente de Chaufa de Mariscos",
         "price": "32",
         "urlImagen": "",
         "idCategory": 5,
@@ -300,7 +300,7 @@
       },
       {
         "idDish": 34,
-        "name": "Duo Sudado de Pescado",
+        "name": "Fuente de Sudado de Pescado",
         "price": "45",
         "urlImagen": "",
         "idCategory": 5,
@@ -318,7 +318,7 @@
       },
       {
         "idDish": 36,
-        "name": "Duo Parihuela Exótica",
+        "name": "Fuente de Parihuela Exótica",
         "price": "60",
         "urlImagen": "",
         "idCategory": 5,
@@ -336,7 +336,7 @@
       },
       {
         "idDish": 38,
-        "name": "Duo Chicharrón de Pescado",
+        "name": "Fuente de Chicharrón de Pescado",
         "price": "40",
         "urlImagen": "",
         "idCategory": 5,

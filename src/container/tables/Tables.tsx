@@ -42,7 +42,7 @@ const Tables = () => {
               tables.map((table: ITable) => {
                 const attentionTable = attentionPeople.find((attentionTable) => Number(attentionTable.idTable) === Number(table.idTable));
                 const numPersons = attentionTable ? attentionTable.numPersons : 0;
-                const isOccupied = ordenes.some((orden: any) => Number(orden.idTable) === Number(table.idTable));
+                const isOccupied = ordenes.some((orden: Orden) => Number(orden.idTable) === Number(table.idTable)) || numPersons !== 0;
 
                 return (
                   <div className="flex justify-center" key={table.idTable}>
