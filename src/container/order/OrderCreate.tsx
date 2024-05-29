@@ -6,44 +6,33 @@ interface OrderCreateProps {
   idTable: string;
   onClose: () => void;
   priceTotal: number;
+  onUpdateOrders: () => void;
 }
 
-const OrderCreate: React.FC<OrderCreateProps> = ({ onClose, idTable, priceTotal }) => {
+const OrderCreate: React.FC<OrderCreateProps> = ({ onClose, idTable, priceTotal, onUpdateOrders }) => {
   const [paymentOption, setPaymentOption] = useState<'tarjeta' | 'yape' | 'efectivo'>('efectivo');
   const [isLoading, setIsLoading] = useState(false);
   const [isOrderGenerated, setIsOrderGenerated] = useState(false);
 
   const handleConfirmation = () => {
     setIsLoading(true);
-    
-    // Simular un retraso de 3 segundos
     setTimeout(() => {
-      // Obtiene las órdenes del localStorage
       let ordenes: Orden[] = JSON.parse(localStorage.getItem('pedidos') || '[]');
-      
-      // Filtra las órdenes que pertenecen al idTable actual
       ordenes = ordenes.filter(orden => orden.idTable !== idTable);
-      
-      // Guarda las nuevas órdenes en el localStorage
       localStorage.setItem('pedidos', JSON.stringify(ordenes));
-
-      // Obtiene la variable attentionPeople del localStorage
       let attentionPeople = JSON.parse(localStorage.getItem('attentionPeople') || '[]');
-
-      // Busca el objeto con el idTable actual y actualiza su numPersons a 0
       attentionPeople = attentionPeople.map((item: any) => {
         if (item.idTable === idTable) {
           return { ...item, numPersons: 0 };
         }
         return item;
       });
-
-      // Guarda la variable attentionPeople actualizada en el localStorage
       localStorage.setItem('attentionPeople', JSON.stringify(attentionPeople));
       
+      onUpdateOrders(); 
       setIsLoading(false);
       setIsOrderGenerated(true);
-    }, 3000);
+    }, 2000);
   };
 
   const handlePaymentOptionChange = (option: 'tarjeta' | 'yape' | 'efectivo') => {

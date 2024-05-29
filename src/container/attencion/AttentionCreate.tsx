@@ -51,11 +51,42 @@ const AttentionCreate: React.FC<AttentionCreateProps> = ({ onClose, idTable, onU
     fetchOrders();
   }, [idTable]);
 
+  // const handleConfirmation = () => {
+  //   try {
+  //     const existingOrdersStr = localStorage.getItem('pedidos');
+  //     const existingOrders = existingOrdersStr ? JSON.parse(existingOrdersStr) : [];
+  //     const updatedOrders = [...existingOrders, ...orders];
+  //     localStorage.setItem('pedidos', JSON.stringify(updatedOrders));
+
+  //     const ordersStr = localStorage.getItem('ordenes');
+  //     if (ordersStr) {
+  //       const parsedOrders = JSON.parse(ordersStr);
+  //       const remainingOrders = parsedOrders.filter((order: Orden) => order.idTable !== idTable);
+  //       localStorage.setItem('ordenes', JSON.stringify(remainingOrders));
+  //     }
+
+  //     onUpdateOrders();
+
+  //     onClose();
+  //   } catch (error) {
+  //     console.error('Error al manejar la confirmación:', error);
+  //   }
+  // };
+
   const handleConfirmation = () => {
     try {
       const existingOrdersStr = localStorage.getItem('pedidos');
       const existingOrders = existingOrdersStr ? JSON.parse(existingOrdersStr) : [];
-      const updatedOrders = [...existingOrders, ...orders];
+      const updatedOrders = orders.reduce((acc, order) => {
+        const existingOrderIndex = acc.findIndex(o => o.idDish === order.idDish && o.idTable === order.idTable);
+        if (existingOrderIndex !== -1) {
+          acc[existingOrderIndex].count += order.count;
+        } else {
+          acc.push(order);
+        }
+        return acc;
+      }, [...existingOrders]);
+
       localStorage.setItem('pedidos', JSON.stringify(updatedOrders));
 
       const ordersStr = localStorage.getItem('ordenes');
@@ -65,8 +96,7 @@ const AttentionCreate: React.FC<AttentionCreateProps> = ({ onClose, idTable, onU
         localStorage.setItem('ordenes', JSON.stringify(remainingOrders));
       }
 
-      onUpdateOrders(); // Llamar a la función de actualización
-
+      onUpdateOrders();
       onClose();
     } catch (error) {
       console.error('Error al manejar la confirmación:', error);
