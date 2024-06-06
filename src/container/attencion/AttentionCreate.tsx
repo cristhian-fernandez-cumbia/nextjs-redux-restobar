@@ -14,23 +14,23 @@ const AttentionCreate: React.FC<AttentionCreateProps> = ({ onClose, idTable, onU
   const [orders, setOrders] = useState<Orden[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchExistingOrder = async () => {
-      try {
-        const response = await fetch(`http://localhost:3000/api/orders?idtable=${idTable}`);
-        const data = await response.json();
-        if (data && !data.error) {
-          setExistingOrder(data);
-        }
-      } catch (error) {
-        console.error('Error al obtener la orden:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchExistingOrder = async () => {
+  //     try {
+  //       const response = await fetch(`http://localhost:3000/api/orders?idtable=${idTable}`);
+  //       const data = await response.json();
+  //       if (data && !data.error) {
+  //         setExistingOrder(data);
+  //       }
+  //     } catch (error) {
+  //       console.error('Error al obtener la orden:', error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchExistingOrder();
-  }, [idTable]);
+  //   fetchExistingOrder();
+  // }, [idTable]);
 
   useEffect(() => {
     const fetchOrders = () => {
@@ -111,7 +111,7 @@ const AttentionCreate: React.FC<AttentionCreateProps> = ({ onClose, idTable, onU
     return (
       <div className='flex flex-col mt-2'>
         <h2 className='text-green-600 font-bold'>Actualizar Pedido en la Mesa N°{idTable}</h2>
-        <p>Hay un pedido pendiente en esta mesa N°{idTable} con lo siguiente:</p>
+        <p className='text-black'>Hay un pedido pendiente en esta mesa N°{idTable} con lo siguiente:</p>
         <div className='flex gap-2 justify-end mt-10'>
           <Button className='bg-primary hover:bg-red-900 px-5 py-2 w-12 flex justify-center text-base font-semibold text-white rounded-lg' onClick={handleConfirmation}>SI</Button>
           <Button className='bg-primary hover:bg-red-900 px-5 py-2 w-12 flex justify-center text-base font-semibold text-white rounded-lg' onClick={onClose}>NO</Button>
@@ -122,12 +122,12 @@ const AttentionCreate: React.FC<AttentionCreateProps> = ({ onClose, idTable, onU
     return (
       <div className='flex flex-col mt-2'>
         <h2 className='text-green-600 font-bold'>Crear Pedido en la Mesa N°{idTable}</h2>
-        <p>Crea un nuevo pedido en esta mesa N°{idTable} con lo siguientes plato(s):</p>
+        <p className='text-black'>Crea un nuevo pedido en esta mesa N°{idTable} con lo siguientes plato(s):</p>
         {orders.length > 0 && (
           <div>
             <ul>
               {orders.map((order, index) => (
-                <li key={index} className='flex items-center'>
+                <li key={index} className='flex items-center text-black'>
                   <OrderIcon className='inline w-4 h-4'/><span className=' text-green-600 font-bold mx-1'>( {order.count} )</span>{order.name} 
                 </li>
               ))}

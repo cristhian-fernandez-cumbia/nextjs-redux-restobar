@@ -963,6 +963,51 @@
         "idCategory": 14,
         "description": "",
         "active": true
+      },
+      {
+        "idDish": 108,
+        "name": "Ceviche al Paso",
+        "price": "10",
+        "urlImagen": "",
+        "idCategory": 15,
+        "description": "",
+        "active": true
+      },
+      {
+        "idDish": 109,
+        "name": "Pollo Frito",
+        "price": "10",
+        "urlImagen": "",
+        "idCategory": 15,
+        "description": "",
+        "active": true
+      },
+      {
+        "idDish": 110,
+        "name": "Pescado Frito",
+        "price": "10",
+        "urlImagen": "",
+        "idCategory": 15,
+        "description": "",
+        "active": true
+      },
+      {
+        "idDish": 111,
+        "name": "Lomo Saltado",
+        "price": "15",
+        "urlImagen": "",
+        "idCategory": 15,
+        "description": "",
+        "active": true
+      },
+      {
+        "idDish": 112,
+        "name": "Pilsen 3X25 (Solo Jueves)",
+        "price": "25",
+        "urlImagen": "",
+        "idCategory": 6,
+        "description": "",
+        "active": true
       }
     ]
   }

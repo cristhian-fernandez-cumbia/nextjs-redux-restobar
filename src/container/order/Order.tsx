@@ -84,16 +84,16 @@ const Order = () => {
       <div className='px-6 mb-28 mt-20'>
         <HeaderAttention text={'Pedido'} />
         <div className='flex items-center justify-between mb-[6px]'>
-          <h1 className='text-center  text-2xl font-medium'>Mesa N°{idTable}</h1>
+          <h1 className='text-center  text-2xl font-medium text-black'>Mesa N°{idTable}</h1>
         </div>
         {filteredOrdenes.map((orden: Orden, index: number) => (
           <OrderCard key={`${orden.idDish}-${index}`} orden={orden} handleReturnOrder={handleReturnOrder}/>
         ))}
         <div className='flex flex-row justify-between border-t-2 border-gray-500 py-3 px-6 mt-4'>
-          <p className='text-3xl'>Total</p>
+          <p className='text-3xl text-black'>Total</p>
           <div className='font-bold'>
-            <span className='text-2xl'>{priceTotal.toFixed(2)}</span>
-            <span className='text-xs'>.00</span>
+            <span className='text-2xl text-black'>{priceTotal.toFixed(2)}</span>
+            <span className='text-xs text-black'>.00</span>
           </div>
         </div>
         <button 

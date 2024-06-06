@@ -67,12 +67,12 @@ const DishesCard = ({ dish, idTable, categoryName, updateFavorites }: DishesCard
       <div className='flex justify-between w-full items-center'>
         <div>
           <div className='flex items-center'>
-            <p>{dish.name}</p>
+            <p className='text-black'>{dish.name}</p>
             <div onClick={handleToggleFavorite} className='cursor-pointer'>
               {isFavorite ? <StartFill /> :<Start />}
             </div>
           </div>
-          <p className='text-sm font-semibold'>S/ {dish.price}.00</p>
+          <p className='text-sm font-semibold text-black'>S/ {dish.price}.00</p>
         </div>
         <button
           className={`bg-blue-600 text-white py-1 px-3 rounded-lg hover:bg-blue-900 cursor-pointer ${added && 'opacity-50 cursor-not-allowed'}`}

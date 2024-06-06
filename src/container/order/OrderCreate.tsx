@@ -17,9 +17,9 @@ const OrderCreate: React.FC<OrderCreateProps> = ({ onClose, idTable, priceTotal,
   const handleConfirmation = () => {
     setIsLoading(true);
     setTimeout(() => {
-      let ordenes: Orden[] = JSON.parse(localStorage.getItem('pedidos') || '[]');
-      ordenes = ordenes.filter(orden => orden.idTable !== idTable);
-      localStorage.setItem('pedidos', JSON.stringify(ordenes));
+      let pedidos: Orden[] = JSON.parse(localStorage.getItem('pedidos') || '[]');
+      pedidos = pedidos.filter(pedido => pedido.idTable !== idTable);
+      localStorage.setItem('pedidos', JSON.stringify(pedidos));
       let attentionPeople = JSON.parse(localStorage.getItem('attentionPeople') || '[]');
       attentionPeople = attentionPeople.map((item: any) => {
         if (item.idTable === idTable) {
@@ -34,6 +34,68 @@ const OrderCreate: React.FC<OrderCreateProps> = ({ onClose, idTable, priceTotal,
       setIsOrderGenerated(true);
     }, 2000);
   };
+
+  // const handleConfirmation = async () => {
+  //   setIsLoading(true);
+
+  //   let pedidos: Orden[] = JSON.parse(localStorage.getItem('pedidos') || '[]');
+  //   const pedidosFiltrados = pedidos.filter(pedido => pedido.idTable === idTable);
+
+  //   let attentionPeople = JSON.parse(localStorage.getItem('attentionPeople') || '[]');
+  //   const tableInfo = attentionPeople.find((item: any) => item.idTable === idTable);
+  //   const numPersons = tableInfo ? tableInfo.numPersons : 0;
+
+  //   const orderData = {
+  //     idTable: Number(idTable),
+  //     numPersons: numPersons,
+  //     paymentType: paymentOption,
+  //     orderType: paymentOption,
+  //     fecha: new Date(),
+  //     total: parseFloat(getTotalPrice()),
+  //     status: 'OPEN',
+  //     active: true,
+  //     dishes: pedidosFiltrados.map((pedido) => ({
+  //       idDish: pedido.idDish,
+  //       count: pedido.count,
+  //       price: pedido.price,
+  //       comment: pedido.annotation || ''
+  //     }))
+  //   };
+
+  //   console.log('orderData:::', orderData)
+
+  //   try {
+  //     const response = await fetch('/api/orders', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify(orderData)
+  //     });
+
+  //     if (response.ok) {
+  //       // Eliminar los pedidos locales y actualizar el estado
+  //       pedidos = pedidos.filter(pedido => pedido.idTable !== idTable);
+  //       localStorage.setItem('pedidos', JSON.stringify(pedidos));
+  //       attentionPeople = attentionPeople.map((item: any) => {
+  //         if (item.idTable === idTable) {
+  //           return { ...item, numPersons: 0 };
+  //         }
+  //         return item;
+  //       });
+  //       localStorage.setItem('attentionPeople', JSON.stringify(attentionPeople));
+
+  //       onUpdateOrders();
+  //       setIsOrderGenerated(true);
+  //     } else {
+  //       console.error("Error al generar el pedido:", await response.text());
+  //     }
+  //   } catch (error) {
+  //     console.error("Error al generar el pedido:", error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
 
   const handlePaymentOptionChange = (option: 'tarjeta' | 'yape' | 'efectivo') => {
     setPaymentOption(option);
@@ -71,7 +133,7 @@ const OrderCreate: React.FC<OrderCreateProps> = ({ onClose, idTable, priceTotal,
   }
 
   return (
-    <div className='flex flex-col mt-2'>
+    <div className='flex flex-col mt-2 text-black'>
       <h2 className='text-green-600 font-bold'>Cancelar Pedido</h2>
       <p>Elija la opción de pago</p>
       <div className='flex gap-2 mb-4'>

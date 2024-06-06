@@ -36,7 +36,7 @@ const AttentionAnnotation: React.FC<AttentionAnnotationProps> = ({ onClose, setC
     <div className='flex flex-col mt-2'>
       <h2 className='text-green-600 font-bold'>Agregar Comentario</h2>
       <textarea
-        className='border border-green-600 rounded-lg p-4 mt-2 outline-none'
+        className='border border-green-600 rounded-lg p-4 mt-2 outline-none text-black'
         placeholder='Escribe un comentario aquí...'
         rows={4}
         value={comment}

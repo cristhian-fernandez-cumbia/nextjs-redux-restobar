@@ -46,7 +46,7 @@ const Attencion = () => {
     <div className='px-6 mb-28 mt-20'>
       <HeaderAttention text={'Nueva Orden'}/>
       <div className='flex items-center justify-between mb-[5px]'>
-        <h1 className='text-center  text-2xl font-medium'>Mesa N°{idTable}</h1>
+        <h1 className='text-center  text-2xl font-medium text-black'>Mesa N°{idTable}</h1>
       </div>
       <AttentionCountPeople idTable={idTable} setCountPeople={setCountPeople}/>
       {ordenes.map((orden: Orden, index: number) => (

@@ -90,6 +90,12 @@
           "name": "Cócteles",
           "urlImagen": "",
           "active": true
+        },
+        {
+          "idCategory": 15,
+          "name": "Otros",
+          "urlImagen": "",
+          "active": true
         }
       ]
     }

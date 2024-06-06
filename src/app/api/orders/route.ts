@@ -5,6 +5,7 @@ interface Dish {
   idDish: number;
   count: number;
   price: number;
+  comment?: string;
 }
 
 interface OrderData {
@@ -19,76 +20,21 @@ interface OrderData {
   dishes: Dish[];
 }
 
-// Función para obtener todas las órdenes o la última orden que cumpla con los criterios especificados
-export async function GET(request: any) {
-  try {
-    if (request.url === undefined) {
-      throw new Error('URL de solicitud indefinida');
-    }
-    const { searchParams } = new URL(request.url);
-    const idTable = searchParams.get('idtable');
-
-    // Si idTable no está presente en la consulta, devolver todas las órdenes
-    if (!idTable) {
-      const orders = await db.orders.findMany({
-        include: {
-          OrdersDishes: {
-            include: {
-              Dishes: true
-            }
-          }
-        }
-      });
-      // Retornar las órdenes
-      return NextResponse.json(orders);
-    }
-
-    // Buscar la última orden que cumpla con los criterios especificados
-    const order = await db.orders.findFirst({
-      where: {
-        idTable: Number(idTable),
-        status: 'OPEN'
-      },
-      orderBy: {
-        fecha: 'desc' // Ordenar por fecha descendente para obtener la última orden
-      },
-      include: {
-        OrdersDishes: {
-          include: {
-            Dishes: true
-          }
-        }
-      }
-    });
-
-    if (!order) {
-      return NextResponse.json(null);
-    }
-
-    // Retornar la última orden encontrada
-    return NextResponse.json(order);
-  } catch (error) {
-    console.error("Error al obtener la orden:", error);
-    return NextResponse.error();
-  }
-}
-
-// Función para crear una nueva orden
 export async function POST(request: any) {
   try {
-    const requestBody = request.body;
+    const requestBody = await request.json();
     if (!requestBody) {
       throw new Error('No hay datos en el cuerpo de la solicitud');
     }
-    // Obtener los datos de la nueva orden desde el cuerpo de la solicitud
-    const newOrderData = JSON.parse(requestBody);
 
-    // Crear la nueva orden en la base de datos
+    console.log('requestBody::', requestBody)
+    const newOrderData: OrderData = requestBody;
+
     const newOrder = await db.orders.create({
       data: {
         idTable: newOrderData.idTable,
-        fecha: new Date(), // Asignar la fecha actual
-        total: calculateTotal(newOrderData), // Calcular el total de la orden
+        fecha: newOrderData.fecha || new Date(), // Asignar la fecha actual si no está presente
+        total: newOrderData.total || 0, // Calcular el total de la orden
         numPersons: newOrderData.numPersons,
         paymentType: newOrderData.paymentType,
         orderType: newOrderData.orderType,
@@ -96,12 +42,11 @@ export async function POST(request: any) {
         active: newOrderData.active,
         // Crear los registros de órdenes de platos
         OrdersDishes: {
-          createMany: {
-            data: newOrderData.dishes.map((dish: Dish) => ({
-              idDish: dish.idDish,
-              count: dish.count
-            }))
-          }
+          create: newOrderData.dishes.map((dish) => ({
+            idDish: dish.idDish,
+            count: dish.count,
+            comment: dish.comment
+          }))
         }
       },
       include: {
@@ -119,11 +64,4 @@ export async function POST(request: any) {
     console.error("Error al crear la orden:", error);
     return NextResponse.error();
   }
-}
-
-// Función para calcular el total de la orden
-function calculateTotal(orderData: OrderData) {
-  return orderData.dishes.reduce((total, dish) => {
-    return total + dish.price * dish.count;
-  }, 0);
 }

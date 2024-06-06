@@ -52,14 +52,14 @@ const Dishes = () => {
   };
 
   if (isLoading) {
-    return <>Loading ...</>;
+    return <h2 className='text-black'>Loading ...</h2>;
   }
 
   return (
     <div className='px-6 mb-28 mt-20'>
       <HeaderAttention text={'Platos de Comida'}/>
       <div className='flex items-center justify-between mb-[12px] mt-4'>
-        <h1 className='text-center text-2xl font-medium'>Mesa N°{idTable}</h1>
+        <h1 className='text-center text-2xl font-medium text-black'>Mesa N°{idTable}</h1>
         <button
           onClick={toggleShowFavorites}
           className={`text-white py-2 px-4 rounded-md cursor-pointer ${!showFavorites ? 'bg-yellow-500 hover:bg-yellow-700': 'bg-red-500 hover:bg-red-700'}`}
@@ -70,9 +70,9 @@ const Dishes = () => {
 
       {showFavorites ? (
         <div>
-          <h2 className='text-2xl text-center font-semibold mb-4'>Favoritos</h2>
+          <h2 className='text-2xl text-center font-semibold mb-4 text-black'>Favoritos</h2>
           {favorites.length === 0 ? (
-            <p className='text-center'>No hay favoritos</p>
+            <p className='text-center text-black'>No hay favoritos</p>
           ) : (
             favorites.map((dish: Dish) => (
               <div key={dish.idDish}>

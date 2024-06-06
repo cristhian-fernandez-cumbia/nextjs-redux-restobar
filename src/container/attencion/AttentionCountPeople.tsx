@@ -47,9 +47,9 @@ const AttentionCountPeople: React.FC<AttentionCountPeopleProps> = ({ idTable, se
 
   return (
     <div className='flex mb-4 flex-col overflow-hidden'>
-      <p className='mb-3'>
+      <p className='mb-3 text-black'>
         Cantidad de Personas:
-        <span className='ml-2 text-xl font-semibold'>{selectedNumber === null ? '0' : selectedNumber}</span>
+        <span className='ml-2 text-xl font-semibold text-black'>{selectedNumber === null ? '0' : selectedNumber}</span>
       </p>
       <div className='flex items-center space-x-2 justify-center'>
         <button onClick={handleScrollLeft} className="bg-red-400 px-2 py-2 rounded-full hover:bg-primary">
