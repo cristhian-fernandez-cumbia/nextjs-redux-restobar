@@ -1,8 +1,10 @@
 'use client'
 import React, { useState } from 'react';
+import Link from 'next/link'
 import MenuItem from './MenuItem';
 import Button from '../button/Button';
 import { signOut } from 'next-auth/react';
+import { Home, Reports, SignOff } from '@/assets/icons';
 
 const Menu: React.FC = () => {
     const [showMenu, setShowMenu] = useState(false);
@@ -21,7 +23,22 @@ const Menu: React.FC = () => {
                 </Button>
                 {showMenu && (
                     <ul className="absolute top-[70px] left-0 bg-black text-white w-full py-6 px-12 rounded shadow-lg animate-slideDown duration-3000 z-10">
-                        <MenuItem text="CERRAR" onClick={handleCloseClick}/>  
+                        <Link href={`/`}>
+                            <li className='flex flex-row mb-2 hover:cursor-pointer'>
+                                <Home fill='#FFFFFF'/> 
+                                <MenuItem text="INICIO"/> 
+                            </li> 
+                        </Link>
+                        <Link href={`/reports/orders`}>
+                            <li className='flex flex-row mb-2 hover:cursor-pointer'>
+                                <Reports fill='#FFFFFF'/> 
+                                <MenuItem text="REPORTE"/> 
+                            </li> 
+                        </Link>
+                        <li className='flex flex-row hover:cursor-pointer' onClick={handleCloseClick}>
+                            <SignOff fill='#FFFFFF'/> 
+                            <MenuItem text="CERRAR" /> 
+                        </li> 
                     </ul>
                 )}
             </div>

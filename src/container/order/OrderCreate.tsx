@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from '@/components/button/Button';
 import { Orden } from '@/interface/attencion';
+import { formatDate } from '@/utils/functions';
 
 interface OrderCreateProps {
   idTable: string;
@@ -10,94 +11,94 @@ interface OrderCreateProps {
 }
 
 const OrderCreate: React.FC<OrderCreateProps> = ({ onClose, idTable, priceTotal, onUpdateOrders }) => {
-  const [paymentOption, setPaymentOption] = useState<'tarjeta' | 'yape' | 'efectivo'>('efectivo');
+  const [paymentOption, setPaymentOption] = useState<'tarjeta' | 'yape/plin' | 'efectivo'>('efectivo');
   const [isLoading, setIsLoading] = useState(false);
   const [isOrderGenerated, setIsOrderGenerated] = useState(false);
 
-  const handleConfirmation = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      let pedidos: Orden[] = JSON.parse(localStorage.getItem('pedidos') || '[]');
-      pedidos = pedidos.filter(pedido => pedido.idTable !== idTable);
-      localStorage.setItem('pedidos', JSON.stringify(pedidos));
-      let attentionPeople = JSON.parse(localStorage.getItem('attentionPeople') || '[]');
-      attentionPeople = attentionPeople.map((item: any) => {
-        if (item.idTable === idTable) {
-          return { ...item, numPersons: 0 };
-        }
-        return item;
-      });
-      localStorage.setItem('attentionPeople', JSON.stringify(attentionPeople));
-      
-      onUpdateOrders(); 
-      setIsLoading(false);
-      setIsOrderGenerated(true);
-    }, 2000);
-  };
-
-  // const handleConfirmation = async () => {
+  // const handleConfirmation = () => {
   //   setIsLoading(true);
-
-  //   let pedidos: Orden[] = JSON.parse(localStorage.getItem('pedidos') || '[]');
-  //   const pedidosFiltrados = pedidos.filter(pedido => pedido.idTable === idTable);
-
-  //   let attentionPeople = JSON.parse(localStorage.getItem('attentionPeople') || '[]');
-  //   const tableInfo = attentionPeople.find((item: any) => item.idTable === idTable);
-  //   const numPersons = tableInfo ? tableInfo.numPersons : 0;
-
-  //   const orderData = {
-  //     idTable: Number(idTable),
-  //     numPersons: numPersons,
-  //     paymentType: paymentOption,
-  //     orderType: paymentOption,
-  //     fecha: new Date(),
-  //     total: parseFloat(getTotalPrice()),
-  //     status: 'OPEN',
-  //     active: true,
-  //     dishes: pedidosFiltrados.map((pedido) => ({
-  //       idDish: pedido.idDish,
-  //       count: pedido.count,
-  //       price: pedido.price,
-  //       comment: pedido.annotation || ''
-  //     }))
-  //   };
-
-  //   console.log('orderData:::', orderData)
-
-  //   try {
-  //     const response = await fetch('/api/orders', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify(orderData)
+  //   setTimeout(() => {
+  //     let pedidos: Orden[] = JSON.parse(localStorage.getItem('pedidos') || '[]');
+  //     pedidos = pedidos.filter(pedido => pedido.idTable !== idTable);
+  //     localStorage.setItem('pedidos', JSON.stringify(pedidos));
+  //     let attentionPeople = JSON.parse(localStorage.getItem('attentionPeople') || '[]');
+  //     attentionPeople = attentionPeople.map((item: any) => {
+  //       if (item.idTable === idTable) {
+  //         return { ...item, numPersons: 0 };
+  //       }
+  //       return item;
   //     });
-
-  //     if (response.ok) {
-  //       // Eliminar los pedidos locales y actualizar el estado
-  //       pedidos = pedidos.filter(pedido => pedido.idTable !== idTable);
-  //       localStorage.setItem('pedidos', JSON.stringify(pedidos));
-  //       attentionPeople = attentionPeople.map((item: any) => {
-  //         if (item.idTable === idTable) {
-  //           return { ...item, numPersons: 0 };
-  //         }
-  //         return item;
-  //       });
-  //       localStorage.setItem('attentionPeople', JSON.stringify(attentionPeople));
-
-  //       onUpdateOrders();
-  //       setIsOrderGenerated(true);
-  //     } else {
-  //       console.error("Error al generar el pedido:", await response.text());
-  //     }
-  //   } catch (error) {
-  //     console.error("Error al generar el pedido:", error);
-  //   } finally {
+  //     localStorage.setItem('attentionPeople', JSON.stringify(attentionPeople));
+      
+  //     onUpdateOrders(); 
   //     setIsLoading(false);
-  //   }
+  //     setIsOrderGenerated(true);
+  //   }, 2000);
   // };
 
-  const handlePaymentOptionChange = (option: 'tarjeta' | 'yape' | 'efectivo') => {
+  const handleConfirmation = async () => {
+    setIsLoading(true);
+
+    let pedidos: Orden[] = JSON.parse(localStorage.getItem('pedidos') || '[]');
+    const pedidosFiltrados = pedidos.filter(pedido => pedido.idTable === idTable);
+
+    let attentionPeople = JSON.parse(localStorage.getItem('attentionPeople') || '[]');
+    const tableInfo = attentionPeople.find((item: any) => item.idTable === idTable);
+    const numPersons = tableInfo ? tableInfo.numPersons : 0;
+
+    const orderData = {
+      idTable: Number(idTable),
+      numPersons: numPersons,
+      paymentType: paymentOption,
+      orderType: 'En Restobar',
+      fecha: formatDate(new Date()),
+      total: parseFloat(getTotalPrice()),
+      status: 'CLOSE',
+      active: true,
+      dishes: pedidosFiltrados.map((pedido) => ({
+        idDish: pedido.idDish,
+        count: pedido.count,
+        price: pedido.price,
+        comment: pedido.annotation || ''
+      }))
+    };
+
+    console.log('orderData:::', orderData)
+
+    try {
+      const response = await fetch('/api/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(orderData)
+      });
+
+      if (response.ok) {
+        // Eliminar los pedidos locales y actualizar el estado
+        pedidos = pedidos.filter(pedido => pedido.idTable !== idTable);
+        localStorage.setItem('pedidos', JSON.stringify(pedidos));
+        attentionPeople = attentionPeople.map((item: any) => {
+          if (item.idTable === idTable) {
+            return { ...item, numPersons: 0 };
+          }
+          return item;
+        });
+        localStorage.setItem('attentionPeople', JSON.stringify(attentionPeople));
+
+        onUpdateOrders();
+        setIsOrderGenerated(true);
+      } else {
+        console.error("Error al generar el pedido:", await response.text());
+      }
+    } catch (error) {
+      console.error("Error al generar el pedido:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handlePaymentOptionChange = (option: 'tarjeta' | 'yape/plin' | 'efectivo') => {
     setPaymentOption(option);
   };
 
@@ -144,8 +145,8 @@ const OrderCreate: React.FC<OrderCreateProps> = ({ onClose, idTable, priceTotal,
           Tarjeta
         </Button>
         <Button
-          className={`px-5 py-2 rounded-lg ${paymentOption === 'yape' ? 'bg-orange-500 text-white' : 'bg-gray-200'}`}
-          onClick={() => handlePaymentOptionChange('yape')}
+          className={`px-5 py-2 rounded-lg ${paymentOption === 'yape/plin' ? 'bg-orange-500 text-white' : 'bg-gray-200'}`}
+          onClick={() => handlePaymentOptionChange('yape/plin')}
         >
           Yape / Plin
         </Button>

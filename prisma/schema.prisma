@@ -37,6 +37,7 @@ model Dishes {
   name        String
   price       Float
   urlImagen   String?
+  description String?   
   idCategory  Int 
   active      Boolean
   Categories  Categories @relation(fields: [idCategory], references: [idCategory])
@@ -46,7 +47,7 @@ model Dishes {
 model Orders {
   idOrder     Int      @id @default(autoincrement())
   idTable     Int      @map("idTable")
-  fecha       DateTime?
+  fecha       String?
   total       Float?
   numPersons  Int
   paymentType String?
@@ -61,6 +62,7 @@ model OrdersDishes {
   idOrder     Int
   idDish      Int
   count       Int
+  price       Float?
   comment     String?
   Orders      Orders   @relation(fields: [idOrder], references: [idOrder])
   Dishes      Dishes   @relation(fields: [idDish], references: [idDish])

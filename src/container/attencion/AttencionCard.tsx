@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Annotation, Minus, Money, Plus, Trash } from '@/assets/icons';
 import { Orden } from '@/interface/attencion';
-import imageFood from '@/assets/images/products/bohemia_lomo_saltado.png';
 import Modal from '@/components/modal/Modal';
 import Button from '@/components/button/Button';
 import AttentionAnnotation from './AttentionAnnotation';
 import AttentionRemove from './AttentionRemove';
 import AttentionPrice from './AttentionPrice';
+import imageLogo from '@/assets/images/logo/logo_bohemia.jpg';
 
 interface AttencionCardProps {
   orden: Orden;
@@ -128,7 +128,12 @@ const AttencionCard: React.FC<AttencionCardProps> = ({ orden, onDeleteItem }) =>
           </Button>
         </div>
 
-        <Image src={imageFood} alt='bohemia_comidas' className='h-16 w-16 mr-2' />
+        <div className='relative h-16 w-16 mr-2 rounded-lg overflow-hidden'>
+          <Image src={imageLogo} alt={orden.name} className='h-16 w-16' priority/>
+          <div className='absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center'>
+            <p className='text-white text-[10px] text-center font-bold transform -rotate-45'>{orden.categoryName}</p>
+          </div>
+        </div>
         <div className='flex justify-between w-full'>
           <div>
             <p className='text-black'>{orden.name}</p>

@@ -33,6 +33,7 @@ const DishesCard = ({ dish, idTable, categoryName, updateFavorites }: DishesCard
         idTable: idTable,
         idDish: dish.idDish,
         name: dish.name,
+        categoryName: categoryName,
         price: dish.price,
         urlImagen: dish.urlImagen,
         count: 1, 

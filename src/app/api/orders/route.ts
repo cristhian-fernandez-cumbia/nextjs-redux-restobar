@@ -13,7 +13,7 @@ interface OrderData {
   numPersons: number;
   paymentType?: string;
   orderType?: string;
-  fecha?: Date;
+  fecha?: string;
   total?: number;
   status: string;
   active: boolean;
@@ -33,19 +33,19 @@ export async function POST(request: any) {
     const newOrder = await db.orders.create({
       data: {
         idTable: newOrderData.idTable,
-        fecha: newOrderData.fecha || new Date(), // Asignar la fecha actual si no está presente
-        total: newOrderData.total || 0, // Calcular el total de la orden
+        fecha: newOrderData.fecha, 
+        total: newOrderData.total || 0,
         numPersons: newOrderData.numPersons,
         paymentType: newOrderData.paymentType,
         orderType: newOrderData.orderType,
-        status: newOrderData.status, // Incluir la propiedad status
+        status: newOrderData.status, 
         active: newOrderData.active,
-        // Crear los registros de órdenes de platos
         OrdersDishes: {
           create: newOrderData.dishes.map((dish) => ({
             idDish: dish.idDish,
             count: dish.count,
-            comment: dish.comment
+            comment: dish.comment,
+            price: Number(dish.price)
           }))
         }
       },
@@ -58,10 +58,37 @@ export async function POST(request: any) {
       }
     });
 
-    // Retornar la nueva orden creada
     return NextResponse.json(newOrder);
   } catch (error) {
     console.error("Error al crear la orden:", error);
+    return NextResponse.error();
+  }
+}
+
+export async function GET(request: any) {
+  try {
+    // const filterDate = request.query.date ? new Date(request.query.date) : new Date();
+    // const startDate = new Date(filterDate.getFullYear(), filterDate.getMonth(), filterDate.getDate(), 0, 0, 0);
+    // const endDate = new Date(filterDate.getFullYear(), filterDate.getMonth(), filterDate.getDate(), 23, 59, 59);
+    const orders = await db.orders.findMany({
+      // where: {
+      //   fecha: {
+      //     gte: startDate.toISOString(), 
+      //     lte: endDate.toISOString(),   
+      //   },
+      // },
+      include: {
+        OrdersDishes: {
+          include: {
+            Dishes: true,
+          },
+        },
+      },
+    });
+
+    return NextResponse.json(orders);
+  } catch (error) {
+    console.error("Error al obtener las órdenes:", error);
     return NextResponse.error();
   }
 }

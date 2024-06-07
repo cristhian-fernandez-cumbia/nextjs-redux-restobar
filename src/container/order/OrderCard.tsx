@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import imageFood from '@/assets/images/products/bohemia_lomo_saltado.png'
+import imageLogo from '@/assets/images/logo/logo_bohemia.jpg';
 import Image from 'next/image'
 import { Orden } from '@/interface/attencion'
 import { Annotation, Return } from '@/assets/icons'
@@ -54,7 +54,12 @@ const OrderCard: React.FC<OrderCardProps> = ({ orden, handleReturnOrder }) => {
             </Button> : <Annotation className='mr-2' fill={'#ccc'} />
           }
         </div>
-        <Image src={imageFood} alt='bohemia_comidas' className='h-16 w-16 mr-2'/>
+        <div className='relative h-16 w-16 mr-2 rounded-lg overflow-hidden'>
+          <Image src={imageLogo} alt={orden.name} className='h-16 w-16' priority/>
+          <div className='absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center'>
+            <p className='text-white text-[10px] text-center font-bold transform -rotate-45'>{orden.categoryName}</p>
+          </div>
+        </div>
         <div className='flex justify-between w-full items-center'>
           <div>
             <div className='flex items-center'>

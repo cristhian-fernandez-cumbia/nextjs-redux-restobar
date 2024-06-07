@@ -1,3 +1,4 @@
+import Button from '@/components/button/Button';
 import React, { useState } from 'react';
 
 interface AttentionPriceProps {
@@ -28,13 +29,9 @@ const AttentionPrice: React.FC<AttentionPriceProps> = ({ onClose, setNewPrice, c
         className="border p-2 mb-4 w-full"
         min="0"
       />
-      <div className="flex justify-end">
-        <button onClick={onClose} className="mr-2 px-4 py-2 bg-gray-300 rounded">
-          Cancelar
-        </button>
-        <button onClick={handleSubmit} className="px-4 py-2 bg-green-500 text-white rounded">
-          Sí
-        </button>
+      <div className='flex gap-2 justify-end mt-10'>
+        <Button className='bg-green-500 hover:bg-green-700 px-5 py-2 w-12 flex justify-center text-base font-semibold text-white rounded-lg' onClick={handleSubmit}>SI</Button>
+        <Button className='bg-primary hover:bg-red-900 px-5 py-2 w-12 flex justify-center text-base font-semibold text-white rounded-lg' onClick={onClose}>NO</Button>
       </div>
     </div>
   );
