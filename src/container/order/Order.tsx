@@ -6,9 +6,12 @@ import { Orden } from '@/interface/attencion';
 import HeaderAttention from '@/components/header/HeaderAttention';
 import Modal from '@/components/modal/Modal';
 import OrderCreate from './OrderCreate';
+import Button from '@/components/button/Button';
+import OrderWhatsapp from './OrderWhatsapp';
 
 const Order = () => {
   const [isCreateOrderModalOpen, setCreateOrderModalOpen] = useState(false);
+  const [isModalWhatsapp, setModalWhatsapp] = useState(false);
   const [ordenes, setOrdenes] = useState<Orden[]>([]);
   const pathname = usePathname();
   const idTable = pathname.split('/').pop() || '0';
@@ -26,32 +29,20 @@ const Order = () => {
     return total + (Number(orden.count) * Number(orden.price));
   }, 0);
 
-  const handleCancelOrder = async () => {
-    try {
-      const response = await fetch('/api/orders', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(filteredOrdenes)
-      });
-      if (response.ok) {
-        // Redireccionar a la página principal después de guardar la orden
-        // router.push('/');
-      } else {
-        console.error('Error al guardar la orden:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error al guardar la orden:', error);
-    }
-  };
-
   const openCreateOrderModal = () => {
     setCreateOrderModalOpen(true);
   };
 
   const closeCreateOrdereModal = () => {
     setCreateOrderModalOpen(false);
+  };
+
+  const openModalWhatsapp = () => {
+    setModalWhatsapp(true);
+  };
+
+  const closeModalWhatsapp = () => {
+    setModalWhatsapp(false);
   };
 
   const handleReturnOrder = (orden: Orden) => {
@@ -96,14 +87,18 @@ const Order = () => {
             <span className='text-xs text-black'>.00</span>
           </div>
         </div>
-        <button 
-          type="button" 
-          className='bg-green-700 text-white w-full py-4 rounded-lg cursor-pointer hover:bg-green-600'
-          onClick={openCreateOrderModal}
-        >Cancelar Pedido</button>
+        <Button className='bg-green-700 text-white w-full py-4 rounded-lg cursor-pointer hover:bg-green-600' onClick={openCreateOrderModal}>
+          Cancelar Pedido
+        </Button>
+        <Button className='bg-green-900 text-white w-full py-4 rounded-lg cursor-pointer hover:bg-green-600 mt-4' onClick={openModalWhatsapp}>
+          Enviar whatsapp
+        </Button>
       </div>
       <Modal isOpen={isCreateOrderModalOpen} onClose={closeCreateOrdereModal}>
         <OrderCreate onClose={closeCreateOrdereModal} idTable={idTable} priceTotal={priceTotal} onUpdateOrders={updateOrders}/>
+      </Modal>
+      <Modal isOpen={isModalWhatsapp} onClose={closeModalWhatsapp}>
+        <OrderWhatsapp onClose={closeModalWhatsapp} idTable={idTable} priceTotal={priceTotal}/>
       </Modal>
     </>
   )

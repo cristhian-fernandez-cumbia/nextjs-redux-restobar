@@ -15,27 +15,6 @@ const OrderCreate: React.FC<OrderCreateProps> = ({ onClose, idTable, priceTotal,
   const [isLoading, setIsLoading] = useState(false);
   const [isOrderGenerated, setIsOrderGenerated] = useState(false);
 
-  // const handleConfirmation = () => {
-  //   setIsLoading(true);
-  //   setTimeout(() => {
-  //     let pedidos: Orden[] = JSON.parse(localStorage.getItem('pedidos') || '[]');
-  //     pedidos = pedidos.filter(pedido => pedido.idTable !== idTable);
-  //     localStorage.setItem('pedidos', JSON.stringify(pedidos));
-  //     let attentionPeople = JSON.parse(localStorage.getItem('attentionPeople') || '[]');
-  //     attentionPeople = attentionPeople.map((item: any) => {
-  //       if (item.idTable === idTable) {
-  //         return { ...item, numPersons: 0 };
-  //       }
-  //       return item;
-  //     });
-  //     localStorage.setItem('attentionPeople', JSON.stringify(attentionPeople));
-      
-  //     onUpdateOrders(); 
-  //     setIsLoading(false);
-  //     setIsOrderGenerated(true);
-  //   }, 2000);
-  // };
-
   const handleConfirmation = async () => {
     setIsLoading(true);
 
@@ -75,7 +54,6 @@ const OrderCreate: React.FC<OrderCreateProps> = ({ onClose, idTable, priceTotal,
       });
 
       if (response.ok) {
-        // Eliminar los pedidos locales y actualizar el estado
         pedidos = pedidos.filter(pedido => pedido.idTable !== idTable);
         localStorage.setItem('pedidos', JSON.stringify(pedidos));
         attentionPeople = attentionPeople.map((item: any) => {

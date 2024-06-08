@@ -66,17 +66,26 @@ export async function POST(request: any) {
 }
 
 export async function GET(request: any) {
+  const { searchParams } = new URL(request.url);
+  const startDate = searchParams.get('startDate');
+  const endDate = searchParams.get('endDate');
   try {
-    // const filterDate = request.query.date ? new Date(request.query.date) : new Date();
-    // const startDate = new Date(filterDate.getFullYear(), filterDate.getMonth(), filterDate.getDate(), 0, 0, 0);
-    // const endDate = new Date(filterDate.getFullYear(), filterDate.getMonth(), filterDate.getDate(), 23, 59, 59);
+    const whereClause: any = {};
+
+    if (startDate && endDate) {
+      const startDateWithTime = `${startDate} 00:00:00`;
+      const endDateWithTime = `${endDate} 23:59:59`;
+
+      whereClause.fecha = {
+        gte: startDateWithTime,
+        lte: endDateWithTime
+      };
+    } else {
+      throw new Error('Both startDate and endDate must be provided.');
+    }
+
     const orders = await db.orders.findMany({
-      // where: {
-      //   fecha: {
-      //     gte: startDate.toISOString(), 
-      //     lte: endDate.toISOString(),   
-      //   },
-      // },
+      where: whereClause,
       include: {
         OrdersDishes: {
           include: {
@@ -85,7 +94,6 @@ export async function GET(request: any) {
         },
       },
     });
-
     return NextResponse.json(orders);
   } catch (error) {
     console.error("Error al obtener las órdenes:", error);

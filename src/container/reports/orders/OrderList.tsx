@@ -1,31 +1,6 @@
+import Button from '@/components/button/Button';
 import React, { useState } from 'react';
-
-interface Order {
-  idOrder: number;
-  fecha: string;
-  total: number;
-  OrdersDishes: {
-    idOrderDish: number;
-    idDish: number;
-    count: number;
-    comment: string;
-    price: number;
-    Dishes: {
-      idDish: number;
-      name: string;
-      price: number;
-      urlImagen: string | null;
-      description: string | null;
-      idCategory: number;
-      active: boolean;
-    };
-  }[];
-}
-
-interface OrderListProps {
-  orders: Order[];
-  loading: boolean;
-}
+import { OrderListProps } from '@/interface/order';
 
 const OrderList: React.FC<OrderListProps> = ({ orders, loading }) => {
   const [expandedOrder, setExpandedOrder] = useState<number | null>(null);
@@ -49,8 +24,7 @@ const OrderList: React.FC<OrderListProps> = ({ orders, loading }) => {
   }
 
   return (
-    <div className="container mx-auto px-4 mt-24">
-      <h2 className="text-2xl font-semibold mb-4">Lista de Órdenes</h2>
+    <div className="container mx-auto px-4 mt-4">
       <ul>
         {orders.map((order, index) => (
           <li key={order.idOrder} className="mb-4">
@@ -73,7 +47,7 @@ const OrderList: React.FC<OrderListProps> = ({ orders, loading }) => {
               {expandedOrder === order.idOrder && (
                 <div className="mt-2">
                   <h4 className="text-lg font-semibold ">Detalle:</h4>
-                  <ul>
+                  <div>
                     {order.OrdersDishes.map((orderDish) => (
                       <div key={orderDish.idOrderDish} className="flex justify-between border-t border-gray-200 py-2">
                         <span>{orderDish.Dishes.name}</span>
@@ -82,7 +56,7 @@ const OrderList: React.FC<OrderListProps> = ({ orders, loading }) => {
                         <span>SubTotal: {Number(orderDish.price) * Number(orderDish.count)}.00</span>
                       </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               )}
             </div>
