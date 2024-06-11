@@ -56,13 +56,13 @@ const Dishes = () => {
   }
 
   return (
-    <div className='px-6 mb-28 mt-20'>
+    <div className='px-6 mb-28 mt-20 text-black'>
       <HeaderAttention text={'Platos de Comida'}/>
       <div className='flex items-center justify-between mb-[12px] mt-4'>
         <h1 className='text-center text-2xl font-medium text-black'>Mesa N°{idTable}</h1>
         <button
           onClick={toggleShowFavorites}
-          className={`text-white py-2 px-4 rounded-md cursor-pointer ${!showFavorites ? 'bg-yellow-500 hover:bg-yellow-700': 'bg-red-500 hover:bg-red-700'}`}
+          className={`text-white py-2 px-4 rounded-md cursor-pointer ${!showFavorites ? 'bg-yellow-600 hover:bg-yellow-700': 'bg-red-500 hover:bg-red-700'}`}
         >
           {!showFavorites ? 'Ver Favoritos' : 'Ocultar Favoritos'}
         </button>
@@ -89,13 +89,13 @@ const Dishes = () => {
             id="search"
             value={searchTerm}
             onChange={handleSearchChange}
-            className='border-terciary border-[1px] rounded-md py-2 px-3 w-full'
+            className='border-terciary border-[1px] rounded-md py-2 px-3 w-full text-gray-800'
             placeholder='Buscar platos ...'
           />
           <Categories handleCategoryChange={handleCategoryChange} />
 
           {dishes.length === 0 ? (
-            <div>No hay platos</div>
+            <div className='text-black'>No hay platos</div>
           ) : (
             <>
               {selectedCategory === 0 ? (

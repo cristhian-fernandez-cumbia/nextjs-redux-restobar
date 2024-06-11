@@ -93,6 +93,12 @@
         },
         {
           "idCategory": 15,
+          "name": "Infusiones",
+          "urlImagen": "",
+          "active": true
+        },
+        {
+          "idCategory": 16,
           "name": "Otros",
           "urlImagen": "",
           "active": true

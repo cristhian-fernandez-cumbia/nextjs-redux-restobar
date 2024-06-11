@@ -969,7 +969,7 @@
         "name": "Ceviche al Paso",
         "price": "10",
         "urlImagen": "",
-        "idCategory": 15,
+        "idCategory": 16,
         "description": "",
         "active": true
       },
@@ -978,7 +978,7 @@
         "name": "Pollo Frito",
         "price": "10",
         "urlImagen": "",
-        "idCategory": 15,
+        "idCategory": 16,
         "description": "",
         "active": true
       },
@@ -987,7 +987,7 @@
         "name": "Pescado Frito",
         "price": "10",
         "urlImagen": "",
-        "idCategory": 15,
+        "idCategory": 16,
         "description": "",
         "active": true
       },
@@ -996,7 +996,7 @@
         "name": "Lomo Saltado",
         "price": "15",
         "urlImagen": "",
-        "idCategory": 15,
+        "idCategory": 16,
         "description": "",
         "active": true
       },
@@ -1006,6 +1006,42 @@
         "price": "25",
         "urlImagen": "",
         "idCategory": 6,
+        "description": "",
+        "active": true
+      },
+      {
+        "idDish": 113,
+        "name": "Té",
+        "price": "2",
+        "urlImagen": "",
+        "idCategory": 15,
+        "description": "",
+        "active": true
+      },
+      {
+        "idDish": 114,
+        "name": "Manzanilla",
+        "price": "2",
+        "urlImagen": "",
+        "idCategory": 15,
+        "description": "",
+        "active": true
+      },
+      {
+        "idDish": 115,
+        "name": "Anis",
+        "price": "2",
+        "urlImagen": "",
+        "idCategory": 15,
+        "description": "",
+        "active": true
+      },
+      {
+        "idDish": 116,
+        "name": "Cafe",
+        "price": "2",
+        "urlImagen": "",
+        "idCategory": 15,
         "description": "",
         "active": true
       }
